@@ -13,6 +13,10 @@ userRouter.post('/user',addUser);
 userRouter.post('/doctor',authenticated,isAdmin,addDoctor);
 //login :
 userRouter.post('/login',login);
+//check if user authenticated :
+userRouter.get('/authenticated',authenticated,(c) => {
+    return c.json({data : c.get("jwtPayload")},200);
+});
 
 
 
