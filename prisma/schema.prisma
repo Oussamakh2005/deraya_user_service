@@ -43,11 +43,13 @@ model User {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  email     String
+  email     String   @unique
   phone     String
   password  String
   full_name String
   role      UserRole @default(PATIENT)
+  verified  Boolean  @default(false)
   institution_id  String?
   institution Institution?  @relation(fields: [institution_id],references: [id])
+  @@index([email])
 }
