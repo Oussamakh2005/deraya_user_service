@@ -5,11 +5,12 @@ import login from "../controllers/auth/login";
 import isAdmin from "../middlewares/isAdmin";
 import authenticated from "../middlewares/authenticated";
 import getAllDoctors from "../controllers/user/getAllDoctors";
+import isDoctor from "../middlewares/isDoctor";
 
 const userRouter = new Hono();
 
 //register user :
-userRouter.post('/user',addUser);
+userRouter.post('/user',authenticated,isDoctor,addUser);
 //register doctor :
 userRouter.post('/doctor',authenticated,isAdmin,addDoctor);
 //get all doctors :
